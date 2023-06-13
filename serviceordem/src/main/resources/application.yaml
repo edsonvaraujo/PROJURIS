@@ -1,0 +1,40 @@
+server:
+  port: 8086
+  servlet:
+    context-path: '/projuris-serviceorder/'
+
+spring:
+  application:
+    name: projuris-serviceorder-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/projuris-serviceordem
+    username: postgres
+    password: gabi3105
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect:  org.hibernate.dialect.PostgreSQLDialect
+      jdbc:
+        lob.nom-contextual-creation: true
+    properties:
+      hibernate:
+        show_sql: true
+
+projuris:
+  url:
+    authuser: 'http://projuris-authuser-service/projuris-authuser'
+
+serviceRegistry:
+  username: serviceregistry
+  password: "projuris123sr"
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 'http://${serviceRegistry.username}:${serviceRegistry.password}@localhost:8761/eureka'
+    instance:
+      hostname: localhost
+
+
+
